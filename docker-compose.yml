@@ -46,8 +46,8 @@ services:
     environment:
       MYSQL_USER: root
       MYSQL_DATABASE: DDD
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: 101910
+      MYSQL_PASSWORD: 101910
     networks:
       - nginx-php81-mysql8
 
