@@ -1,6 +1,6 @@
 <?php
 
-namespace App\TaskTable\Task\Domain\NewTask;
+namespace App\TaskTable\Task\Domain\NewTask\Model;
 
 class Category
 {

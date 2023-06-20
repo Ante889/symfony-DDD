@@ -1,6 +1,6 @@
 <?php
 
-namespace App\TaskTable\Task\Domain\NewTask;
+namespace App\TaskTable\Task\Domain\NewTask\Model;
 
 use Symfony\Component\Uid\Uuid;
 
@@ -21,7 +21,7 @@ class TaskId
     {
         if (false === Uuid::isValid($id)) {
             throw new \DomainException(
-                \sprintf("AppointmentId '%s' is not valid", $id)
+                \sprintf("TaskId '%s' is not valid", $id)
             );
         }
 

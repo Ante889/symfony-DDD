@@ -2,7 +2,11 @@
 
 namespace App\Tests\TaskTable\Task\Domain\NewTask;
 
+use App\TaskTable\Task\Domain\NewTask\Model\Category;
+use App\TaskTable\Task\Domain\NewTask\Model\Task;
+use App\TaskTable\Task\Domain\NewTask\Model\TaskId;
 use PHPUnit\Framework\TestCase;
+
 class TaskTest extends TestCase
 {
     public function test_an_task_can_be_created(): void
@@ -25,14 +29,5 @@ class TaskTest extends TestCase
         static::assertSame($category, $task->getCategory());
         static::assertSame($startTime, $task->getStartTime());
         static::assertSame($taskLength, $task->getLengthInMinutes());
-    }
-
-
-    public function test_an_task_must_be_longer_than_zero_minutes_long(): void
-    {
-    }
-
-    public function test_an_task_must_be_longer_than_fifteen_minutes_long(): void
-    {
     }
 }
