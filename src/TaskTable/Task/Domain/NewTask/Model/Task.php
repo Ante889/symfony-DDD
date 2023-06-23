@@ -10,12 +10,14 @@ class Task
 
     private function __construct(
         TaskId $taskId,
+        string $description,
         Category $category,
         \DateTimeImmutable $taskTime,
         int $taskLengthInMinutes
     )
     {
         $this->taskId = $taskId;
+        $this->description = $description;
         $this->category = $category;
         $this->taskTime = $taskTime;
         $this->taskLengthInMinutes = $taskLengthInMinutes;
@@ -32,7 +34,8 @@ class Task
         TaskId $taskId,
         Category $category,
         \DateTimeImmutable $taskTime,
-        int $taskLengthInMinutes
+        int $taskLengthInMinutes,
+        string $description = ''
     ): self
     {
         //cannot be longer than MINIMUM_TASK_LENGTH
@@ -50,9 +53,16 @@ class Task
         }
 
         //clean object
-        return new self($taskId, $category, $taskTime, $taskLengthInMinutes);
+        return new self($taskId, $description, $category, $taskTime, $taskLengthInMinutes);
     }
 
+    /**
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
 
     /**
      * @return Category

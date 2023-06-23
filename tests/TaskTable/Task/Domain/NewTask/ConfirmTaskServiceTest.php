@@ -23,7 +23,8 @@ class ConfirmTaskServiceTest extends TestCase
            TaskId::generate(),
            Category::create('TastCategory'),
            $dateTime,
-           15
+           15,
+           'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
        );
 
        $service->confirmTask($task);

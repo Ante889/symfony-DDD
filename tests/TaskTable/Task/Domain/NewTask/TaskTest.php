@@ -17,17 +17,20 @@ class TaskTest extends TestCase
         );
         $startTime = new \DateTimeImmutable();
         $taskLength = 60;
+        $description = 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.';
 
         $task = Task::create(
             $taskId,
             $category,
             $startTime,
-            $taskLength
+            $taskLength,
+            $description
         );
 
         static::assertSame($taskId, $task->getId());
         static::assertSame($category, $task->getCategory());
         static::assertSame($startTime, $task->getStartTime());
+        static::assertSame($description, $task->getDescription());
         static::assertSame($taskLength, $task->getLengthInMinutes());
     }
 }
