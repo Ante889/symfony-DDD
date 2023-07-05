@@ -15,16 +15,19 @@ doctrine:
                 dir: '%kernel.project_dir%/src/App/Entity'
                 prefix: 'App\Entity'
                 alias: App
+                mapping: true
             TaskTable\Category:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/TaskTable/Category/Infrastructure/Doctrine/Entity'
-                prefix: 'TaskTable\Category'
+                prefix: 'App\TaskTable\Category\Infrastructure\Doctrine\Entity'
                 alias: TaskTable\Category
+                mapping: true
             TaskTable\Task:
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/TaskTable/Task/Infrastructure/Doctrine/Entity'
-                prefix: 'TaskTable\Task'
+                prefix: 'App\TaskTable\Task\Infrastructure\Doctrine\Entity'
                 alias: TaskTable\Task
+                mapping: true
 when@test:
     doctrine:
         dbal:

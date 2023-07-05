@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(
     name: 'category'
 )]
-final class Category
+class CategoryEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

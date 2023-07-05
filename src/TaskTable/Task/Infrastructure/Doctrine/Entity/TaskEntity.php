@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\TaskTable\Task\Infrastructure\Doctrine\Entity;
 
-use App\TaskTable\Category\Infrastructure\Doctrine\Entity\Category;
+use App\TaskTable\Category\Infrastructure\Doctrine\Entity\CategoryEntity;
 use App\TaskTable\Task\Infrastructure\Doctrine\Repository\DoctrineTaskRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -16,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Table(
     name: 'task'
 )]
-final class Task
+class TaskEntity
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -51,13 +51,13 @@ final class Task
     private string $taskLengthInMinutes;
 
     #[ORM\ManyToOne(
-        targetEntity: Category::class,
+        targetEntity: CategoryEntity::class,
         cascade: ['persist']
     )]
     #[ORM\JoinColumn(
         name: 'category'
     )]
-    private ?Category $category = null;
+    private ?CategoryEntity $category = null;
 
     /**
      * @return int
@@ -124,17 +124,17 @@ final class Task
     }
 
     /**
-     * @return Category|null
+     * @return CategoryEntity|null
      */
-    public function getCategory(): ?Category
+    public function getCategory(): ?CategoryEntity
     {
         return $this->category;
     }
 
     /**
-     * @param Category|null $category
+     * @param CategoryEntity|null $category
      */
-    public function setCategory(?Category $category): void
+    public function setCategory(?CategoryEntity $category): void
     {
         $this->category = $category;
     }
