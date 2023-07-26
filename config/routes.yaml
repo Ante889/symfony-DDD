@@ -3,3 +3,8 @@ controllers:
         path: ../src/App/Controller/
         namespace: App\Controller
     type: attribute
+
+task_v1:
+    resource: ../src/TaskTable/Task/Application/Controller/Api/v1/
+    type: attribute
+    prefix: '/v1'

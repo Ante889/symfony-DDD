@@ -1,32 +1,32 @@
 <?php
 
-namespace App\TaskTable\Task\Application\Command\Create;
+namespace App\TaskTable\Task\Application\ReadModel\GetCreatedTaskQuery;
 
 use App\TaskTable\Task\Domain\NewTask\Exception\CouldNotConfirmTask;
 use App\TaskTable\Task\Domain\NewTask\Exception\CouldNotConfirmTask\ConfirmTaskService;
 use App\TaskTable\Task\Domain\NewTask\Model\Category;
 use App\TaskTable\Task\Domain\NewTask\Model\Task;
 use App\TaskTable\Task\Domain\NewTask\Model\TaskId;
-use App\TaskTable\Task\Application\Command\Command;
+use App\TaskTable\Task\Application\ReadModel\Interface\GetCreatedTaskInterface;
 
 
-class TaskHandler
+class GetCreatedTaskQuery
 {
     private function __construct(
-        private ConfirmTaskService $confirmTaskService
+        private readonly ConfirmTaskService $confirmTaskService
     )
     {
     }
 
-    public function __invoke(Command $command): void
+    public function __invoke(GetCreatedTaskInterface $getCreatedTask): void
     {
         $task = Task::create(
             TaskId::generate(),
             Category::create(
-                $command->getCategoryName()
+                $getCreatedTask->getCategoryName()
             ),
-            $command->getTaskTime(),
-            $command->getTaskLengthInMinutes()
+            $getCreatedTask->getTaskTime(),
+            $getCreatedTask->getTaskLengthInMinutes()
         );
 
         try {

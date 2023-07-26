@@ -2,15 +2,15 @@
 
 namespace App\TaskTable\Task\Application\Command\Create;
 
-use App\TaskTable\Task\Application\Command\Command;
+use App\TaskTable\Task\Application\ReadModel\Interface\GetCreatedTaskInterface;
 
-class TaskCommand implements Command
+final class TaskCommand implements GetCreatedTaskInterface
 {
     private function __construct(
-        private string $description,
-        private string $categoryName,
-        private \DateTimeImmutable $taskTime,
-        private int $taskLengthInMinutes
+        private readonly string             $description,
+        private readonly string             $categoryName,
+        private readonly \DateTimeImmutable $taskTime,
+        private readonly int                $taskLengthInMinutes
     )
     {
     }
