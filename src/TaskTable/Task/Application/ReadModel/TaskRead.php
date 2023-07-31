@@ -4,7 +4,7 @@ namespace App\TaskTable\Task\Application\Command\Create;
 
 use App\TaskTable\Task\Application\ReadModel\Interface\GetCreatedTaskInterface;
 
-final class TaskCommand implements GetCreatedTaskInterface
+final class TaskRead implements GetCreatedTaskInterface
 {
     private function __construct(
         private readonly string             $description,

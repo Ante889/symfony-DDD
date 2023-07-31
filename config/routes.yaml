@@ -1,10 +1,7 @@
-controllers:
-    resource:
-        path: ../src/App/Controller/
-        namespace: App\Controller
-    type: attribute
+controllers_a:
+    resource: '../src/App/Controller/'
+    type:     annotation
 
-task_v1:
-    resource: ../src/TaskTable/Task/Application/Controller/Api/v1/
-    type: attribute
-    prefix: '/v1'
+controllers_b:
+    resource: '../src/TaskTable/Task/Application/Controller/Api/v1/'
+    type:     annotation

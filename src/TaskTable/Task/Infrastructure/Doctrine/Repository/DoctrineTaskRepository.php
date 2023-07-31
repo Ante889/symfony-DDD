@@ -50,6 +50,18 @@ final class DoctrineTaskRepository extends ServiceEntityRepository implements Ta
 
     public function getAll(): array
     {
-        // TODO: Implement getAll() method.
+        $data = $this->findAll();
+
+        return \array_map(function (array $row) {
+            return Task::create(
+                TaskId::fromString($row->getId()),
+                Category::create(
+                    $row->getCategory(),
+                ),
+                \DateTimeImmutable::createFromFormat(self::DATE_FORMAT, $row->getTaskTime()),
+                $row->getTaskLengthInMinutes(),
+                $row->getDescription(),
+            );
+        }, $data);
     }
 }

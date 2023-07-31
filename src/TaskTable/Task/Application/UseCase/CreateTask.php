@@ -1,32 +1,33 @@
 <?php
 
-namespace App\TaskTable\Task\Application\ReadModel\GetCreatedTaskQuery;
+declare(strict_types=1);
 
+namespace App\Topic\Application\UseCase;
+
+use App\TaskTable\Task\Application\Command\Create\TaskRead;
 use App\TaskTable\Task\Domain\NewTask\Exception\CouldNotConfirmTask;
 use App\TaskTable\Task\Domain\NewTask\Exception\CouldNotConfirmTask\ConfirmTaskService;
 use App\TaskTable\Task\Domain\NewTask\Model\Category;
 use App\TaskTable\Task\Domain\NewTask\Model\Task;
 use App\TaskTable\Task\Domain\NewTask\Model\TaskId;
-use App\TaskTable\Task\Application\ReadModel\Interface\GetCreatedTaskInterface;
 
-
-class GetCreatedTaskQuery
+final class CreateTask
 {
-    private function __construct(
+    public function __construct(
         private readonly ConfirmTaskService $confirmTaskService
     )
     {
     }
 
-    public function __invoke(GetCreatedTaskInterface $getCreatedTask): void
+    public function create(TaskRead $taskRead): void
     {
         $task = Task::create(
             TaskId::generate(),
             Category::create(
-                $getCreatedTask->getCategoryName()
+                $taskRead->getCategoryName()
             ),
-            $getCreatedTask->getTaskTime(),
-            $getCreatedTask->getTaskLengthInMinutes()
+            $taskRead->getTaskTime(),
+            $taskRead->getTaskLengthInMinutes()
         );
 
         try {
@@ -35,5 +36,4 @@ class GetCreatedTaskQuery
             throw new \RuntimeException("The task could not be created");
         }
     }
-
 }
