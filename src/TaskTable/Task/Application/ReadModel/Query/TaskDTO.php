@@ -2,15 +2,27 @@
 
 namespace App\TaskTable\Task\Application\ReadModel\Query;
 
+use DateTimeImmutable;
+
 class TaskDTO
 {
     public function __construct(
-        private readonly string $description,
-        private readonly string $categoryName,
-        private readonly int    $taskTime,
-        private readonly int    $taskLengthInMinutes
+        private readonly string            $description,
+        private readonly string            $categoryName,
+        private readonly DateTimeImmutable $taskTime,
+        private readonly int               $taskLengthInMinutes
     )
     {
+    }
+
+    public function create(
+        string $description,
+        string $categoryName,
+        DateTimeImmutable $taskTime,
+        int $taskLengthInMinutes
+    ): self
+    {
+        return new self($description,$categoryName, $taskTime, $taskLengthInMinutes);
     }
 
     /**
@@ -30,9 +42,9 @@ class TaskDTO
     }
 
     /**
-     * @return int
+     * @return DateTimeImmutable
      */
-    public function getTaskTime(): int
+    public function getTaskTime(): DateTimeImmutable
     {
         return $this->taskTime;
     }

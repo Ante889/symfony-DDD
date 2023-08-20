@@ -69,10 +69,13 @@ class TaskEntity
 
     /**
      * @param int $id
+     * @return $this
      */
-    public function setId(int $id): void
+    public function setId(int $id): self
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -85,10 +88,13 @@ class TaskEntity
 
     /**
      * @param string $description
+     * @return TaskEntity
      */
-    public function setDescription(string $description): void
+    public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
     }
 
     /**
@@ -101,10 +107,13 @@ class TaskEntity
 
     /**
      * @param DateTime|null $taskTime
+     * @return $this
      */
-    public function setTaskTime(?DateTime $taskTime): void
+    public function setTaskTime(?DateTime $taskTime): self
     {
         $this->taskTime = $taskTime;
+
+        return $this;
     }
 
     /**
@@ -117,10 +126,13 @@ class TaskEntity
 
     /**
      * @param string $taskLengthInMinutes
+     * @return TaskEntity
      */
-    public function setTaskLengthInMinutes(string $taskLengthInMinutes): void
+    public function setTaskLengthInMinutes(string $taskLengthInMinutes): self
     {
         $this->taskLengthInMinutes = $taskLengthInMinutes;
+
+        return $this;
     }
 
     /**

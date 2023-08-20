@@ -3,6 +3,7 @@
 namespace App\TaskTable\Task\Domain\NewTask\Model;
 
 use App\TaskTable\Task\Domain\NewTask\Exception\TaskLengthInvalid;
+use DateTimeImmutable;
 
 class Task
 {
@@ -12,8 +13,8 @@ class Task
         TaskId $taskId,
         string $description,
         Category $category,
-        \DateTimeImmutable $taskTime,
-        int $taskLengthInMinutes
+        DateTimeImmutable $taskTime,
+        string $taskLengthInMinutes
     )
     {
         $this->taskId = $taskId;
@@ -26,14 +27,15 @@ class Task
     /**
      * @param TaskId $taskId
      * @param Category $category
-     * @param \DateTimeImmutable $taskTime
+     * @param DateTimeImmutable $taskTime
      * @param int $taskLengthInMinutes
+     * @param string $description
      * @return self
      */
     public static function create(
         TaskId $taskId,
         Category $category,
-        \DateTimeImmutable $taskTime,
+        DateTimeImmutable $taskTime,
         int $taskLengthInMinutes,
         string $description = ''
     ): self
@@ -82,19 +84,19 @@ class Task
 
 
     /**
-     * @return int
+     * @return DateTimeImmutable
      */
-    public function getStartTime(): int
+    public function getStartTime(): DateTimeImmutable
     {
-        return $this->taskLengthInMinutes;
+        return $this->taskTime;
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return string
      */
-    public function getLengthInMinutes(): \DateTimeImmutable
+    public function getLengthInMinutes(): string
     {
-        return $this->taskTime;
+        return $this->taskLengthInMinutes;
     }
 
 }

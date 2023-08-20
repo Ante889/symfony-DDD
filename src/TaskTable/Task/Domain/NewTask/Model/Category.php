@@ -5,7 +5,7 @@ namespace App\TaskTable\Task\Domain\NewTask\Model;
 class Category
 {
     private function __construct(
-        private string $name,
+        private readonly string $name,
     ) {
     }
 

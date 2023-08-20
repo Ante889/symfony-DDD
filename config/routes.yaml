@@ -1,7 +1,3 @@
 controllers_a:
     resource: '../src/App/Controller/'
     type:     annotation
-
-controllers_b:
-    resource: '../src/TaskTable/Task/Application/Controller/Api/v1/'
-    type:     annotation

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Topic\Application\UseCase;
+namespace App\TaskTable\Task\Application\UseCase;
 
-use App\TaskTable\Task\Application\Command\Create\TaskRead;
+use App\TaskTable\Task\Application\ReadModel\Query\TaskDTO;
 use App\TaskTable\Task\Domain\NewTask\Exception\CouldNotConfirmTask;
 use App\TaskTable\Task\Domain\NewTask\Exception\CouldNotConfirmTask\ConfirmTaskService;
 use App\TaskTable\Task\Domain\NewTask\Model\Category;
@@ -19,15 +19,15 @@ final class CreateTask
     {
     }
 
-    public function create(TaskRead $taskRead): void
+    public function create(TaskDTO $taskDTO): void
     {
         $task = Task::create(
             TaskId::generate(),
             Category::create(
-                $taskRead->getCategoryName()
+                $taskDTO->getCategoryName()
             ),
-            $taskRead->getTaskTime(),
-            $taskRead->getTaskLengthInMinutes()
+            $taskDTO->getTaskTime(),
+            $taskDTO->getTaskLengthInMinutes()
         );
 
         try {

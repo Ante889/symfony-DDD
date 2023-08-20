@@ -34,6 +34,30 @@ final class DoctrineTaskRepository extends ServiceEntityRepository implements Ta
            return null;
         }
 
+        return $this->getOne($data);
+    }
+
+    public function store(Task $task): void
+    {
+        $taskEntity = (new TaskEntity())
+                    ->setId((int) $task->getId())
+                    ->setDescription($task->getDescription())
+                    ->setTaskLengthInMinutes($task->getLengthInMinutes())
+                    ->setTaskTime((new \DateTime())->setTimestamp($task->getStartTime()->getTimestamp()));
+
+        $this->save($taskEntity);
+    }
+
+    public function getAll(): array
+    {
+        return $this->getArray(
+            $this->findAll()
+        );
+    }
+
+
+    public function getOne(array $data): Task
+    {
         return Task::create(
             TaskId::fromString($data[0]->getId()),
             Category::create($data[0]->getCategory()->getName()),
@@ -43,15 +67,8 @@ final class DoctrineTaskRepository extends ServiceEntityRepository implements Ta
         );
     }
 
-    public function store(Task $task): void
+    public function getArray(array|null $data): array
     {
-        // TODO: Implement store() method.
-    }
-
-    public function getAll(): array
-    {
-        $data = $this->findAll();
-
         return \array_map(function (array $row) {
             return Task::create(
                 TaskId::fromString($row->getId()),

@@ -10,7 +10,7 @@ class ConfirmTaskService
 {
 
     public function __construct(
-        private TaskRepository $taskRepository
+        private readonly TaskRepository $taskRepository
     )
     {
     }
@@ -28,7 +28,7 @@ class ConfirmTaskService
          foreach ($this->taskRepository->getAll() as $taskFromBase) {
             if (
                 $taskFromBase->getStartTime() < $task->getStartTime() &&
-                $taskFromBase->getStartTime() + Task::MINIMUM_TASK_LENGTH > $task->getStartTime()
+                (int)$taskFromBase->getStartTime() + Task::MINIMUM_TASK_LENGTH > $task->getStartTime()
             ) {
                throw new CouldNotConfirmTask("Task time must not be overlap with other task");
             }

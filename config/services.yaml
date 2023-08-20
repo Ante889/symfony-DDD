@@ -20,9 +20,5 @@ services:
             - '../src/App/Entity/'
             - '../src/App/Kernel.php'
 
-    App\TaskTable\Task\Application\Controller\Api\v1\:
-        resource: '../src/TaskTable/Task/Application/Controller/Api/v1/'
-        tags: [ 'controller.service_arguments' ]
-
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
